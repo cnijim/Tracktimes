@@ -1,0 +1,7 @@
+<h1>Add a new vehicle here</h1>
+<%= simple_form_for @vehicle, url: user_vehicles_path do |f| %>
+  <%= f.input :year %> 
+  <%= f.input :make %> 
+  <%= f.input :model %> 
+  <%= f.submit "Add a vehicle" %>
+<% end %>
