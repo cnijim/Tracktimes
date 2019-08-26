@@ -1,0 +1,19 @@
+<h1>User's Cars</h1>
+<%# <h1><%= @vehicle.inspect %></h1> 
+
+<ul>
+  <% @vehicle.each do |vehicle| %>
+    <li><%= vehicle.year %></li>
+    <li><%= vehicle.make %></li>
+    <li><%= vehicle.model %></li>
+    <br>
+  <% end %>
+</ul>
+
+<% if @renderUserAdminButtons %>
+  <h1>Add a button</h1>
+  <button type="Add a New Car" class="btn btn-primary">Primary</button>
+<% else %>
+  <h1>Don't add a button</h1>
+<% end %>
+
