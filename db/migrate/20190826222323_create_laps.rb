@@ -7,6 +7,7 @@ class CreateLaps < ActiveRecord::Migration[5.2]
       t.integer :vehicle_id
       t.timestamps
     end
-    add_index :vehicle_id, :track_id
+    add_index :laps, :track_id
+    add_index :laps, :vehicle_id
   end
 end

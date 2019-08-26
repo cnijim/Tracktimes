@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_145421) do
+ActiveRecord::Schema.define(version: 2019_08_26_224032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "laps", force: :cascade do |t|
+    t.time "lap_time"
+    t.integer "track_id"
+    t.date "date"
+    t.integer "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["track_id"], name: "index_laps_on_track_id"
+    t.index ["vehicle_id"], name: "index_laps_on_vehicle_id"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state"], name: "index_tracks_on_state"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
