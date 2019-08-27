@@ -17,6 +17,12 @@ class VehiclesController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    puts "show vehicle activated"
+    @vehicle = Vehicle.find_by_id([params[:id]])
+    puts @vehicle
+  end
+
   private
 
   def vehicle_params

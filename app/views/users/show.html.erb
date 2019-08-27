@@ -6,6 +6,8 @@
     <li><%= vehicle.year %></li>
     <li><%= vehicle.make %></li>
     <li><%= vehicle.model %></li>
+    <%= puts vehicle.id %>
+    <%= link_to 'View Details', user_vehicle_path(vehicle.user_id,vehicle.id), class: 'btn btn-primary' %>
     <br>
   <% end %>
 </ul>
