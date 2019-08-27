@@ -3,3 +3,7 @@
   <li><%= @vehicle.make %></li>
   <li><%= @vehicle.model %></li>
 </ul>
+
+<% if @renderUserAdminButtons %>
+  <%= link_to 'Enter a Lap Time', new_user_vehicle_path(@user), class: 'btn btn-primary' %>
+<% end %>

@@ -18,9 +18,15 @@ class VehiclesController < ApplicationController
   end
 
   def show
-    puts "show vehicle activated"
     @vehicle = Vehicle.find_by_id([params[:id]])
-    puts @vehicle
+    @vehicleOwnerId = @vehicle.user_id
+    puts "show vehicle activated"
+    puts @vehicleOwnerId
+    @user = User.find_by_id(@vehicleOwnerId)
+    # @vehicle = Vehicle.find(params[:vehicle_id])
+    if @user == current_user
+      @renderUserAdminButtons = true
+    end
   end
 
   private
