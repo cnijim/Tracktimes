@@ -1,0 +1,12 @@
+<h1>Select a Track</h1>
+
+<ul>
+  <% @tracks.each do |track| %>
+    <li><%= track.name %></li>
+    <li><%= track.city %></li>
+    <li><%= track.state %></li>
+    <%= link_to 'View Track Times', track_path(track.id), class: 'btn btn-primary' %>
+    <br> 
+    <br> 
+  <% end %>
+</ul>
