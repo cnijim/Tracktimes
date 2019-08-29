@@ -1,6 +1,11 @@
 class LapsController < ApplicationController
   def new
     @lap = Lap.new
+    # @tracks_names = Track.select(:name)
+    @tracks = Track.all
+    puts "###############\n"
+    puts @tracks
+    puts "\n###############\n"
   end
 
   def create

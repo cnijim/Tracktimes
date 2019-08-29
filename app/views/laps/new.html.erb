@@ -1,7 +1,8 @@
 <h1>Add a new lap time</h1>
 <%= simple_form_for @lap, url: user_vehicle_laps_path do |f| %>
   <%= f.input :lap_time %> 
-  <%= f.input :track_id %> 
+  <%# <%= f.input :track_id, :collection => @tracks, :label_method => name, :value_method => id, :label => "Track To Select" %> 
+  <%= f.input :track_id, collection: @tracks, label_method: :name, value_method: :id, label: "Track To Select"%>
   <%= f.input :date %> 
   <%= f.submit "Add a New Lap Time", class: 'btn btn-primary' %>
 <% end %>
