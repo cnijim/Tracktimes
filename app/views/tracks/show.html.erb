@@ -1,3 +1,10 @@
 <h1>Lap Times for 
 <%= @track.name %>
+<ul>
+  <% @laps.each do |lap| %>
+    <li><%= lap.inspect %></li>
+    <br>
+    <br>
+  <% end %>
+</ul>
 </h1>  
