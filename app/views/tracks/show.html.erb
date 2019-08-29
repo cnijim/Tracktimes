@@ -1,10 +1,28 @@
 <h1>Lap Times for 
 <%= @track.name %>
-<ul>
-  <% @laps.each do |lap| %>
-    <li><%= lap.inspect %></li>
-    <br>
-    <br>
+</h1> 
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Vehicle</th>
+      <th scope="col">Driver</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tableData.each do |rowData| %>
+    <tr>
+      <td><%= rowData[:rank] %></td>
+      <td><%= rowData[:vehicleName] %></td>
+      <td><%= rowData[:driver] %></td>
+      <td><%= rowData[:lapTime] %></td>
+    </tr>
   <% end %>
-</ul>
-</h1>  
+  </tbody>
+    <br>
+    <br>
+ 
+
+ 

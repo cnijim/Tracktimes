@@ -5,11 +5,23 @@ class TracksController < ApplicationController
   end
 
   def show
+    @tableData = []
+    
     @track = Track.find_by_id([params[:id]])
     @laps = Lap.where(["track_id = ?", @track.id])
-    puts "###############\n"
-    puts @laps
-    puts "\n###############\n"
+    @laps.each do |lap|
+      rowData = {}
+      vehicle = Vehicle.find(lap.vehicle_id)
+      vehicleName = "#{vehicle.year} #{vehicle.make} #{vehicle.model}"
+      puts "###############\n"
+      puts vehicleName
+      puts "###############\n"
+      rowData[:vehicleName] = vehicleName
+      rowData[:lapTime] = lap.lap_time
+      rowData[:rank] = "TBD"
+      rowData[:driver] = "TBD"
+      @tableData << rowData
+    end
   end
 
   def new
