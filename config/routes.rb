@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :tracks, only: [:index, :show]
   resources :users, only: [:show]
   resources :users do
-    resources :vehicles, only: [:new, :create, :show]
+    resources :vehicles, only: [:new, :create, :show] do
+      resources :laps, only: [:new, :create]
+    end
   end
 end
