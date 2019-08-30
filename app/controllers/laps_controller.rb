@@ -15,6 +15,6 @@ class LapsController < ApplicationController
   private
 
   def lap_params
-    params.require(:lap).permit(:lap_time, :track_id, :date)
+    params.require(:lap).permit(:lap_time_minutes, :lap_time_seconds, :lap_time_hundreds, :track_id, :date)
   end
 end

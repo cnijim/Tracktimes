@@ -1,8 +1,19 @@
-<h1>Add a new lap time</h1>
-<%= simple_form_for @lap, url: user_vehicle_laps_path do |f| %>
-  <%= f.input :lap_time %> 
-  <%# <%= f.input :track_id, :collection => @tracks, :label_method => name, :value_method => id, :label => "Track To Select" %> 
-  <%= f.input :track_id, collection: @tracks, label_method: :name, value_method: :id, label: "Track To Select"%>
-  <%= f.input :date %> 
-  <%= f.submit "Add a New Lap Time", class: 'btn btn-primary' %>
-<% end %>
+<div class="container">
+  <h1>Add a new lap time</h1>
+  <%= simple_form_for @lap, url: user_vehicle_laps_path do |f| %>
+    <div class = "row time-input">
+      <%= f.input :lap_time_minutes, collection: 0..15, label: false, prompt: "minutes"%> 
+      <%= f.input :lap_time_seconds, collection: 0..59, label: false, prompt: 'seconds'  %> 
+      <%= f.input :lap_time_hundreds, collection: 0..99, label: false, prompt: "hundredths" %> 
+    </div>
+    <div class = "row">
+      <%= f.input :track_id, collection: @tracks, label_method: :name, value_method: :id, label: false, prompt: "select a track"%>
+    </div>
+    <div class = "row">
+      <%= f.input :date, label: false %> 
+    </div>
+    <div class = "row">
+      <%= f.submit "Submit Time", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

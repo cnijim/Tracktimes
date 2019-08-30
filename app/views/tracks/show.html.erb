@@ -15,8 +15,8 @@
   <% @tableData.each do |rowData| %>
     <tr>
       <td><%= rowData[:rank] %></td>
-      <td><%= rowData[:vehicleName] %></td>
-      <td><%= rowData[:driver] %></td>
+      <td><%= link_to  rowData[:vehicleName], user_vehicle_path(rowData[:userId], rowData[:vehicleId]) %></td>
+      <td><%= link_to rowData[:driver], user_path(rowData[:userId]) %></td>
       <td><%= rowData[:lapTime] %></td>
     </tr>
   <% end %>

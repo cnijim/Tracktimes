@@ -1,25 +1,27 @@
 class TracksController < ApplicationController
-  before_action :authenticate_user!
   def index
     @tracks = Track.all
   end
 
   def show
     @tableData = []
-    
     @track = Track.find_by_id([params[:id]])
     @laps = Lap.where(["track_id = ?", @track.id])
     @laps.each do |lap|
       rowData = {}
       vehicle = Vehicle.find(lap.vehicle_id)
+      user = User.find(vehicle.user_id)
       vehicleName = "#{vehicle.year} #{vehicle.make} #{vehicle.model}"
+      lapTime = "#{lap.lap_time_minutes}:#{lap.lap_time_seconds.to_s.rjust(2, "0")}.#{lap.lap_time_hundreds.to_s.rjust(2, "0")}"
       puts "###############\n"
       puts vehicleName
       puts "###############\n"
       rowData[:vehicleName] = vehicleName
-      rowData[:lapTime] = lap.lap_time
+      rowData[:lapTime] = lapTime
       rowData[:rank] = "TBD"
-      rowData[:driver] = "TBD"
+      rowData[:driver] = user.driver_name
+      rowData[:userId] = vehicle.user_id
+      rowData[:vehicleId] = lap.vehicle_id
       @tableData << rowData
     end
   end
