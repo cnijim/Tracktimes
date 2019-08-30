@@ -1,6 +1,26 @@
+require 'net/http'
+require 'json'
+
 class TracksController < ApplicationController
   def index
+    @tracksData = []
     @tracks = Track.all
+    @tracks.each do |track|
+      trackData = {}
+      placeParam = "#{track.zip},#{track.country}"
+      apiKey = "511ffbaf5f8b6c3e6a3c38975456fddd"
+      resp = Net::HTTP.get('api.openweathermap.org',"/data/2.5/weather?APPID=#{apiKey}&zip=#{placeParam}")
+      data = JSON.parse(resp)
+      conditions = data['weather'][0]['main']
+      tempK = data['main']['temp']
+      tempF = convertKtoF(tempK)
+      trackData[:name] = track.name
+      trackData[:location] = "#{track.city}, #{track.state}"
+      trackData[:weather] = "#{tempF}F, #{conditions}"
+      trackData[:id] = track.id
+      @tracksData << trackData
+    end
+
   end
 
   def show
@@ -41,6 +61,14 @@ class TracksController < ApplicationController
     end
     @vehicle = current_user.vehicles.create(vehicle_params)
     redirect_to root_path
+  end
+
+  private
+
+  def convertKtoF(temp)
+    tempC = temp - 273.15
+    tempF = (tempC * 9/5) + 32
+    return tempF.round
   end
 
 end

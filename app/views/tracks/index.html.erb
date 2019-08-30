@@ -1,11 +1,13 @@
 <h1>Select a Track</h1>
 
 <ul>
-  <% @tracks.each do |track| %>
-    <li><%= track.name %></li>
-    <li><%= track.city %></li>
-    <li><%= track.state %></li>
-    <%= link_to 'View Track Times', track_path(track.id), class: 'btn btn-primary' %>
+  <% @tracksData.each do |track| %>
+    <div class="col-12">
+      <li><%= track[:name] %></li>
+      <li><%= track[:location] %></li>
+      <li><%= track[:weather] %></li>
+      <%= link_to 'View Track Times', track_path(track[:id]), class: 'btn btn-primary' %>
+    </div>
     <br> 
     <br> 
   <% end %>
